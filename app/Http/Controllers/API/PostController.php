@@ -110,7 +110,7 @@ class PostController extends BaseController
     public function show($id)
     {
         try {
-            $post = Post::with(['comments.user', 'reactions.user'])->findOrFail($id);
+            $post = Post::findOrFail($id);
 
             return $this->sendResponse(["id" => $post->id], $post, '', 200);
         } catch (ModelNotFoundException $e) {

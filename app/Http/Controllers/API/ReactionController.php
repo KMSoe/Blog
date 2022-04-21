@@ -22,7 +22,7 @@ class ReactionController extends BaseController
     public function index(Request $request)
     {
         try {
-            $reaction = Reaction::where('post_id', $request->postId)->get();
+            $reaction = Reaction::where('post_id', $request->postId)->with('user')->get();
 
             return $this->sendResponse(["total" => count($reaction)], $reaction, '', 200);
         } catch (QueryException $e) {

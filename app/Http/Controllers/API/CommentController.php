@@ -18,7 +18,7 @@ class CommentController extends BaseController
 
     public function index(Request $request) {
         try {
-            $comments = Comment::where('post_id', $request->id)->get();
+            $comments = Comment::where('post_id', $request->postId)->with('user')->get();
 
             return $this->sendResponse(["total" => count($comments)], $comments, '', 200);
         } catch (QueryException $e) {
