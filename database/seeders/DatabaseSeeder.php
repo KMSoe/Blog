@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Reaction;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -16,20 +17,13 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        User::create([
-            "name" => "Alice",
-            "email" => "alice@gmail.com",
-            "password" => bcrypt("111111"),
-        ]);
 
-        User::create([
-            "name" => "Bob",
-            "email" => "bob@gmail.com",
-            "password" => bcrypt("111111"),
-        ]);
+        $this->call(UsersSeeder::class);
 
         \App\Models\Category::factory(10)->create();
         \App\Models\Post::factory(30)->create();
         \App\Models\Comment::factory(30)->create();
+
+        $this->call(ReactionsSeeder::class);
     }
 }
