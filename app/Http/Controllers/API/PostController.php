@@ -50,6 +50,7 @@ class PostController extends BaseController
             $posts = $query->with(['reactions'])->join('categories', "posts.category_id", "=", "categories.id")
                 ->join("users", "posts.user_id", "=", "users.id")
                 ->select("posts.*", "users.name as Owner", "users.profile AS profile", "categories.name AS categoryName")
+                ->latest()
                 ->get();
 
             return $this->sendResponse(['total' => count($posts)], $posts, '', 200);
